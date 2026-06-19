@@ -26,6 +26,7 @@ const state = {
   width: 0,
   height: 0,
   nodes: [],
+  clicks: [],
   paused: false,
 };
 
@@ -102,10 +103,11 @@ function buildNodes() {
 }
 
 function draw() {
+  const now = performance.now();
   context.clearRect(0, 0, state.width, state.height);
-  context.fillStyle = 'rgba(46, 211, 111, 0.9)';
-  context.strokeStyle = 'rgba(46, 211, 111, 0.2)';
-  context.lineWidth = 1;
+
+  // expire old click ripples
+  state.clicks = state.clicks.filter(c => now - c.born < c.life);
 
   for (let index = 0; index < state.nodes.length; index += 1) {
     const node = state.nodes[index];
@@ -119,6 +121,7 @@ function draw() {
       if (node.y > state.height + 20) node.y = -20;
     }
 
+    // draw regular edges
     for (let otherIndex = index + 1; otherIndex < state.nodes.length; otherIndex += 1) {
       const other = state.nodes[otherIndex];
       const dx = node.x - other.x;
@@ -127,6 +130,7 @@ function draw() {
       if (distance < 210) {
         const alpha = 1 - distance / 210;
         context.strokeStyle = `rgba(46, 211, 111, ${alpha * 0.28})`;
+        context.lineWidth = 1;
         context.beginPath();
         context.moveTo(node.x, node.y);
         context.lineTo(other.x, other.y);
@@ -134,9 +138,49 @@ function draw() {
       }
     }
 
+    // draw click-ripple edges
+    for (const click of state.clicks) {
+      const age = (now - click.born) / click.life; // 0 → 1
+      const fade = 1 - age;
+      const dx = node.x - click.x;
+      const dy = node.y - click.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist < click.radius) {
+        const proximity = 1 - dist / click.radius;
+        const alpha = proximity * fade * 0.9;
+        context.strokeStyle = `rgba(46, 211, 111, ${alpha})`;
+        context.lineWidth = 1 + proximity * 1.2;
+        context.beginPath();
+        context.moveTo(click.x, click.y);
+        context.lineTo(node.x, node.y);
+        context.stroke();
+      }
+    }
+
     context.beginPath();
     context.globalAlpha = 0.9;
+    context.fillStyle = 'rgba(46, 211, 111, 0.9)';
     context.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+    context.fill();
+  }
+
+  // draw click pulse rings
+  for (const click of state.clicks) {
+    const age = (now - click.born) / click.life;
+    const fade = 1 - age;
+    const ringRadius = click.radius * age;
+    context.globalAlpha = fade * 0.5;
+    context.strokeStyle = 'rgba(46, 211, 111, 1)';
+    context.lineWidth = 1.5;
+    context.beginPath();
+    context.arc(click.x, click.y, ringRadius, 0, Math.PI * 2);
+    context.stroke();
+
+    // inner dot at click point
+    context.globalAlpha = fade * 0.8;
+    context.fillStyle = 'rgba(46, 211, 111, 1)';
+    context.beginPath();
+    context.arc(click.x, click.y, 3 * fade, 0, Math.PI * 2);
     context.fill();
   }
 
@@ -161,4 +205,15 @@ draw();
 window.addEventListener('resize', () => {
   resizeCanvas();
   buildNodes();
+});
+
+canvas.style.pointerEvents = 'auto';
+window.addEventListener('click', (e) => {
+  state.clicks.push({
+    x: e.clientX,
+    y: e.clientY,
+    born: performance.now(),
+    life: 1800,
+    radius: 220,
+  });
 });
