@@ -34,8 +34,7 @@
     <main id="home">
       <section class="hero section">
         <div class="hero-content">
-          <div class="hero-badge">Open to Work (Co-op / Internships)</div>
-          <h1>Hiral Hitesh Rana</h1>
+<h1>Hiral Hitesh Rana</h1>
           <h3>DATA ANALYTICS ENGINEER | DATA SCIENTIST | AI/ML ENGINEER</h3>
           <p class="hero-copy">
             I build analytical and AI-driven systems that turn raw data into reliable insight.
@@ -206,44 +205,51 @@
       <section class="section" id="projects">
         <div class="section-label">FEATURED PROJECTS</div>
         <div class="stack">
-          <article class="panel centered card">
-            <h3>DocuMind LLM Agent</h3>
-            <div class="meta">Python · NLP · Prompt Engineering · LLM · Flask</div>
-            <p>
-              Built an AI-powered document assistant for retrieval, summarization, and question
-              answering over unstructured text. The system combines LLM orchestration, prompt
-              engineering, and RAG-style workflows to make document interaction faster and more
-              intuitive.
-            </p>
+
+          <article class="panel project-accordion">
+            <button class="project-header" aria-expanded="false">
+              <div class="project-header-left">
+                <h3>DocuMind LLM Agent</h3>
+                <div class="meta">Python · Flask · RAG · Groq API · React · Prompt Engineering</div>
+              </div>
+              <span class="project-chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="project-body"><div><p>DocuMind is an agentic, AI-powered document assistant that lets users upload unstructured documents and ask natural-language questions, returning grounded answers with relevant source context. It's built on a Retrieval-Augmented Generation (RAG) pipeline that chunks documents, retrieves the most relevant passages, and feeds them to the LLM so responses stay accurate and reduce hallucination. The system uses the Groq API for fast, low-latency inference, with engineered prompts that handle retrieval, summarization, and Q&A as distinct tasks. A Flask backend manages document ingestion, retrieval logic, and the API endpoints connecting the model to the interface, while a React frontend handles document upload and an interactive chat experience — making document interaction faster and more intuitive than manual searching.</p></div></div>
           </article>
 
-          <article class="panel centered card">
-            <h3>Customer Churn & Pricing Optimization</h3>
-            <div class="meta">Python · Machine Learning · Feature Engineering · Predictive Modeling · Scikit-learn</div>
-            <p>
-              Developed a machine learning project focused on churn behavior, retention signals,
-              and pricing decisions. The work included data cleaning, exploratory analysis, feature
-              engineering, and model evaluation for predictive insight.
-            </p>
+          <article class="panel project-accordion">
+            <button class="project-header" aria-expanded="false">
+              <div class="project-header-left">
+                <h3>Customer Churn & Pricing Optimization</h3>
+                <div class="meta">Python · Scikit-learn · XGBoost · Random Forest · Feature Engineering · EDA</div>
+              </div>
+              <span class="project-chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="project-body"><div><p>This machine learning project predicts customer churn and surfaces retention signals that inform pricing and engagement decisions. The work began with data cleaning and exploratory data analysis to understand churn drivers, handle missing values, and identify patterns across customer segments, followed by feature engineering from behavioral and account data to strengthen the predictive signal. Random Forest and XGBoost classifiers were trained and compared, with hyperparameter tuning and AUC-ROC evaluation producing 80%+ AUC-ROC. Beyond the score, feature importance was interpreted to translate model output into actionable retention and pricing recommendations.</p></div></div>
           </article>
 
-          <article class="panel centered card">
-            <h3>Sales Analytics Dashboard</h3>
-            <div class="meta">Data Analysis · Tableau · SQL · Pandas · Data Visualization</div>
-            <p>
-              Built a sales analytics dashboard to track KPIs, identify trends, and support
-              decision-making through clear visual insights and simplified reporting.
-            </p>
+          <article class="panel project-accordion">
+            <button class="project-header" aria-expanded="false">
+              <div class="project-header-left">
+                <h3>Sales Analytics Dashboard</h3>
+                <div class="meta">Python · Pandas · SQL · Tableau · Data Visualization</div>
+              </div>
+              <span class="project-chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="project-body"><div><p>The Sales Analytics Dashboard is an end-to-end reporting tool built to track core KPIs, monitor trends, and support faster, data-backed decision-making. Python and Pandas were used to clean, aggregate, and transform raw sales data into a consistent, analysis-ready structure, while SQL queries extracted and joined records across sources to compute metrics like revenue, growth, and segment performance. Clear, interactive Tableau visualizations highlight trends, outliers, and KPI movement for non-technical stakeholders, simplifying recurring reporting so business users can self-serve insights instead of requesting one-off analyses.</p></div></div>
           </article>
 
-          <article class="panel centered card">
-            <h3>NFT Theft Tracker</h3>
-            <div class="meta">MySQL · Node.js · React · ETL · REST APIs</div>
-            <p>
-              Designed a full-stack tracking system for monitoring and investigating NFT theft
-              cases using structured data workflows, SQL analytics, and a React dashboard.
-            </p>
+          <article class="panel project-accordion">
+            <button class="project-header" aria-expanded="false">
+              <div class="project-header-left">
+                <h3>NFT Theft Tracker</h3>
+                <div class="meta">MySQL · Node.js · React · ETL · REST APIs · SQL Analytics</div>
+              </div>
+              <span class="project-chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="project-body"><div><p>NFT Theft Tracker is a full-stack system designed to monitor, record, and investigate NFT theft cases using structured data workflows and SQL analytics. At its core is a normalized MySQL database of 16 tables, supported by 5 views, 4 stored procedures, and 4 triggers that enforce data integrity and automate logic, with over 3,600 records loaded and managed through ETL workflows. A Node.js backend exposes 8 REST API endpoints serving theft case data, investigation status, and analytics, and a React dashboard lets users search, filter, and visualize cases — turning raw database records into an investigator-friendly interface.</p></div></div>
           </article>
+
         </div>
       </section>
 
@@ -259,6 +265,14 @@
                 </svg>
               </span>
               <a href="mailto:rana.hi@northeastern.edu">rana.hi@northeastern.edu</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zm2-5a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+                </svg>
+              </span>
+              <a href="https://www.linkedin.com/in/ranahiral/" target="_blank" rel="noopener">linkedin.com/in/ranahiral</a>
             </div>
             <div class="contact-item">
               <span class="contact-icon" aria-hidden="true">

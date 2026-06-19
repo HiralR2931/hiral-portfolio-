@@ -171,6 +171,22 @@ function draw() {
   requestAnimationFrame(draw);
 }
 
+// project accordions
+document.querySelectorAll('.project-header').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const article = btn.closest('.project-accordion');
+    const isOpen = article.classList.contains('open');
+    document.querySelectorAll('.project-accordion.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.project-header').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      article.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
 // start bootline sequence then initialize canvas
 startBootline();
 if (eduItems.length) {
