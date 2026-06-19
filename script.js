@@ -164,25 +164,6 @@ function draw() {
     context.fill();
   }
 
-  // draw click pulse rings
-  for (const click of state.clicks) {
-    const age = (now - click.born) / click.life;
-    const fade = 1 - age;
-    const ringRadius = click.radius * age;
-    context.globalAlpha = fade * 0.5;
-    context.strokeStyle = 'rgba(46, 211, 111, 1)';
-    context.lineWidth = 1.5;
-    context.beginPath();
-    context.arc(click.x, click.y, ringRadius, 0, Math.PI * 2);
-    context.stroke();
-
-    // inner dot at click point
-    context.globalAlpha = fade * 0.8;
-    context.fillStyle = 'rgba(46, 211, 111, 1)';
-    context.beginPath();
-    context.arc(click.x, click.y, 3 * fade, 0, Math.PI * 2);
-    context.fill();
-  }
 
   context.globalAlpha = 1;
   context.fillStyle = 'rgba(46, 211, 111, 0.06)';
